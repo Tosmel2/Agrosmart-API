@@ -33,4 +33,9 @@ public class AuthService {
         }
         return null;
     }
+
+     // Added: Method to fetch user by email
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
 }
