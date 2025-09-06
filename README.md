@@ -122,7 +122,7 @@ The API will be available at [http://localhost:8080](http://localhost:8080)
 ---
 
 ## Author
-Tosin Adewale  [https://wa.me/08068957966](WhatsApp)
+Tosin Adewale [WhatsApp](https://wa.me/08068957966)
 
 
 
@@ -133,4 +133,4 @@ PUT /api/user/update (form-data or x-www-form-urlencoded)<br>
 POST /api/user/change-password<br>
 POST /api/user/profile-pic (form-data: file as File, email as Text)
 
-UI doc:  [https://agrosmart-api.onrender.com/swagger-ui/index.html](Swagger link Doc) 
+UI doc: [Swagger link Doc](https://agrosmart-api.onrender.com/swagger-ui/index.html)
