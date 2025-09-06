@@ -74,4 +74,31 @@ public class UserProfileController {
         dto.setLanguage(user.getLanguage());
         return ResponseEntity.ok(dto);
     }
+
+    // Get all users
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    // Get user by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        return ResponseEntity.ok(user);
+    }
+
+    // Delete user by ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUserById(@PathVariable Long id) {
+        boolean deleted = userService.deleteUserById(id);
+        if (deleted) {
+            return ResponseEntity.ok("User deleted");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+    }
 }
