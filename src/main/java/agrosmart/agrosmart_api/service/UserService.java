@@ -1,5 +1,6 @@
 package agrosmart.agrosmart_api.service;
 
+import agrosmart.agrosmart_api.dto.KycProfileDTO;
 import agrosmart.agrosmart_api.model.User;
 import agrosmart.agrosmart_api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +40,21 @@ public class UserService {
         user.setProfilePic(file.getBytes());
         userRepository.save(user);
     }
+
+    public void updateKyc(String email, KycProfileDTO dto) {
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user != null) {
+            user.setVoice(dto.getVoice());
+            user.setRole(dto.getRole());
+            user.setCrops(dto.getCrops());
+            user.setTools(dto.getTools());
+            user.setLanguage(dto.getLanguage());
+            userRepository.save(user);
+        }
+    }
+
+
+    public User getUserByEmail(String email) {
+    return userRepository.findByEmail(email).orElse(null);
+}
 }

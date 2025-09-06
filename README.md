@@ -14,8 +14,8 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/MariamAliDEV/Agrosmart-API.git
-cd agrosmart
+git clone https://github.com/Tosmel2/Agrosmart-API.git
+cd Agrosmart-API
 ```
 
 ### 2. Configure the Database
@@ -62,7 +62,10 @@ The API will be available at [http://localhost:8080](http://localhost:8080)
 | POST   | /api/user/profile-pic        | Upload Profile Picture     |
 | POST   | /api/user/change-password    | Change Password            |
 | POST   | /api/forgot-password         | Forgot Password            |
-| POST   | /api/reset-password          | Reset Password            |
+| POST   | /api/reset-password          | Reset Password             |
+| GET    | /api/auth/user               | Get user Details           |
+| PUT    | /api/user/kyc-update         | KYC Update                 |
+| GET    | /api/user/kyc-profile        | KYC Profile                |
 
 
 ### Features
@@ -83,13 +86,17 @@ The API will be available at [http://localhost:8080](http://localhost:8080)
   - `password`  
   Returns: JWT token
 
-### **Resume Upload**
-
-- **Upload Resume:**  
-  `POST /api/resume/upload`  
-  Body (form-data):  
-  - `file` (File)
-  - `email` (Text)  
+- **Update KYC:**  
+  `PUT /api/user/kyc-update`  
+ ```bash
+ {
+  "language": "English",
+  "voice": "Yes",
+  "role": "Farmer",
+  "crops": "Maize, Rice, Beans",
+  "tools": "Tractor, cutlass"
+}
+```  
   **Requires JWT token in `Authorization: Bearer <token>` header**
 
 ---
@@ -103,6 +110,7 @@ The API will be available at [http://localhost:8080](http://localhost:8080)
     Authorization: Bearer <your-jwt-token>
     ```
 4. Use `form-data` for file uploads.
+54. Use `raw - JSON` for kyc update.
 
 ---
 
@@ -114,13 +122,15 @@ The API will be available at [http://localhost:8080](http://localhost:8080)
 ---
 
 ## Author
-Tosin Adewale
+Tosin Adewale  [https://wa.me/08068957966](WhatsApp)
 
 
 
 ==================
 ### Testing
 
-PUT /api/user/update (form-data or x-www-form-urlencoded)
-POST /api/user/change-password
+PUT /api/user/update (form-data or x-www-form-urlencoded)<br>
+POST /api/user/change-password<br>
 POST /api/user/profile-pic (form-data: file as File, email as Text)
+
+UI doc:  [https://agrosmart-api.onrender.com/swagger-ui/index.html](Swagger link Doc) 

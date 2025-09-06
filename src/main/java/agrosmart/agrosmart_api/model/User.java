@@ -18,6 +18,11 @@ public class User {
 
     private String phone;
     private String location;
+    private String crops;
+    private String tools;
+    private String language;
+    private String role;
+    private String voice;
     private String address;
 
 
@@ -41,6 +46,21 @@ public class User {
 
     public String getLocation() { return location; }
     public void setLocation(String location) { this.location = location; }
+
+    public String getVoice() { return voice; }
+    public void setVoice(String voice) { this.voice = voice; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
+
+    public String getLanguage() { return language; }
+    public void setLanguage(String language) { this.language = language; }
+
+    public String getCrops() { return crops; }
+    public void setCrops(String crops) { this.crops = crops; }
+
+    public String getTools() { return tools; }
+    public void setTools(String tools) { this.tools = tools; }
 
     public String getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }

@@ -1,9 +1,15 @@
 package agrosmart.agrosmart_api.controller;
 
 import agrosmart.agrosmart_api.service.UserService;
+import agrosmart.agrosmart_api.dto.KycProfileDTO;
+import agrosmart.agrosmart_api.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.security.core.Authentication;
 
 @RestController
 @RequestMapping("/api/user")
@@ -38,5 +44,34 @@ public class UserProfileController {
             e.printStackTrace();
             return "Failed to update profile picture";
         }
+    }
+
+    @PutMapping("/kyc-update")
+    public ResponseEntity<?> updateKyc(Authentication authentication, @RequestBody KycProfileDTO dto) {
+        String email = authentication.getName(); // logged-in user’s email
+        User user = userService.getUserByEmail(email);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+
+        userService.updateKyc(email, dto);
+        return ResponseEntity.ok("KYC Profile updated");
+    }
+
+
+    @GetMapping("/kyc-profile")
+    public ResponseEntity<?> getUser(Authentication authentication) {
+        String email = authentication.getName();
+        User user = userService.getUserByEmail(email);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        KycProfileDTO dto = new KycProfileDTO();
+        dto.setVoice(user.getVoice());
+        dto.setRole(user.getRole());
+        dto.setTools(user.getTools());
+        dto.setCrops(user.getCrops());
+        dto.setLanguage(user.getLanguage());
+        return ResponseEntity.ok(dto);
     }
 }
